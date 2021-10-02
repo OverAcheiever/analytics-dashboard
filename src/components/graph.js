@@ -7,7 +7,7 @@ export default function Graph({ graphData }) {
       labels: graphData.graphLabels,
       datasets: [
         {
-          label: "Tier 1",
+          label: "APY",
           barPercentage: 0.9,
           data: graphData.graphDatasets[0],
           backgroundColor: "rgb(107, 121, 255)",
@@ -15,7 +15,7 @@ export default function Graph({ graphData }) {
           fill: true,
         },
         {
-          label: "Tier 2",
+          label: "Reward",
           barPercentage: 0.9,
           data: graphData.graphDatasets[1],
           backgroundColor: "rgb(175, 206, 255)",
