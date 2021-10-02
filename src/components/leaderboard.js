@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { CryptoStatsSDK } from "@cryptostats/sdk";
+import { CryptoStatsSDK } from "@cryptostats/sdk";
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState(null);
@@ -13,26 +13,26 @@ export default function Leaderboard() {
       ]);
     }
 
-    // const moralisKey = "7fd1e7ef047a764836b4cbd1";
-    // const tokens = [
-    //   { name: "Dai", address: "0x6b175474e89094c44da98b954eedeac495271d0f" },
-    //   { name: "USDC", address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" },
-    //   { name: "USDT", address: "0xdac17f958d2ee523a2206206994597c13d831ec7" },
-    // ];
-    // (async function () {
-    //   const sdk = new CryptoStatsSDK({ moralisKey });
-    //   const list = sdk.getList("apy");
-    //   await list.fetchAdapters();
-    //   for (const token of tokens) {
-    //     const result = await list.executeQuery("currentAPY", token.address);
-    //     console.log(`APY for ${token.name}:`);
-    //     for (const protocol of result) {
-    //       console.log(
-    //         `${protocol.id}: ${(protocol.result * 100).toFixed(2)}%`
-    //       );
-    //     }
-    //   }
-    // })();
+    const moralisKey = "7fd1e7ef047a764836b4cbd1";
+    const tokens = [
+      { name: "Dai", address: "0x6b175474e89094c44da98b954eedeac495271d0f" },
+      { name: "USDC", address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" },
+      { name: "USDT", address: "0xdac17f958d2ee523a2206206994597c13d831ec7" },
+    ];
+    (async function () {
+      const sdk = new CryptoStatsSDK({ moralisKey });
+      const list = sdk.getList("apy");
+      await list.fetchAdapters();
+      for (const token of tokens) {
+        const result = await list.executeQuery("currentAPY", token.address);
+        console.log(`APY for ${token.name}:`);
+        for (const protocol of result) {
+          console.log(
+            `${protocol.id}: ${(protocol.result * 100).toFixed(2)}%`
+          );
+        }
+      }
+    })();
   }, [leaderboard]);
 
   return (
