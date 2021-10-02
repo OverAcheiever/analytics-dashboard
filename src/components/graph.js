@@ -10,7 +10,7 @@ export default function Graph({ graphData }) {
           label: "Tier 1",
           barPercentage: 0.9,
           data: graphData.graphDatasets[0],
-          backgroundColor: "rgb(139, 92, 246)",
+          backgroundColor: "rgb(107, 121, 255)",
 
           fill: true,
         },
@@ -127,7 +127,7 @@ export default function Graph({ graphData }) {
           height: "100%",
           backgroundColor: "#fff",
           borderRadius: "1rem",
-          padding: "1.5rem 1.5rem 0.8rem 1rem",
+          padding: "1.5rem 1.5rem 0.8rem 1.5rem",
         }}
       >
         <Bar width="100%" height="100%" data={data} options={options} />

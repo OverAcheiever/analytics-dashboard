@@ -8,10 +8,6 @@ const navigation = [
   },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Sidebar() {
   return (
     <div style={{ width: "20rem", height: "100%", padding: "0.5rem" }}>
