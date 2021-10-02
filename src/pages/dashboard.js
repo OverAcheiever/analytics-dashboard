@@ -41,6 +41,7 @@ export default function Dashboard() {
   var graphDatasets1 = [[], []];
   var graphDatasets2 = [[], []];
 
+  // eslint-disable-next-line no-unused-vars
   for (var label in graphLabels) {
     graphDatasets1[0].push(Math.floor(Math.random() * 10));
     graphDatasets1[1].push(Math.floor(Math.random() * 2));
