@@ -1,5 +1,7 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Chart, Bar } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+Chart.register(ChartDataLabels);
 
 export default function Graph({ graphData }) {
   if (graphData !== null) {
@@ -8,36 +10,54 @@ export default function Graph({ graphData }) {
       datasets: [
         {
           label: "APY",
-          barPercentage: 0.9,
+          barPercentage: 1,
           data: graphData.graphDatasets[0],
-          backgroundColor: "rgb(107, 121, 255)",
-
+          backgroundColor: "#99A2C6",
+          display: true,
           fill: true,
         },
         {
           label: "Reward",
-          barPercentage: 0.9,
+          barPercentage: 1,
+          display: "auto",
           data: graphData.graphDatasets[1],
-          backgroundColor: "rgb(175, 206, 255)",
-
+          backgroundColor: "#DBE0EA",
           fill: true,
+          datalabels: {
+            offset: "-20",
+          },
         },
-        // {
-        //   label: "Tier 3",
-        //   barPercentage: 0.8,
-        //   data: graphData.graphDatasets[2],
-        //   backgroundColor: "rgb(251, 207, 232)",
-        //   fill: true,
-        // },
       ],
     };
 
     const options = {
+      options: {
+        interaction: {
+          mode: "nearest",
+        },
+      },
       font: {
         fontFamily: "Gilroy",
       },
       elements: {},
       plugins: {
+        datalabels: {
+          anchor: "end",
+          clamp: "true",
+          align: "bottom",
+          offset: "0",
+          color: "#000",
+          display: function (context) {
+            return context.dataset.data[context.dataIndex] > 0;
+          },
+          font: {
+            family: "Gilroy",
+            size: "12",
+          },
+          formatter: function (value, context) {
+            return `${Math.round(value)}%`;
+          },
+        },
         legend: {
           display: false,
           position: "bottom",
@@ -49,7 +69,10 @@ export default function Graph({ graphData }) {
             },
           },
         },
+
         tooltip: {
+          intersect: true,
+          interaction: { mode: "x" },
           backgroundColor: "rgba(0, 0, 0, 0.8)",
           padding: 8,
           cornerRadius: 2,
@@ -66,11 +89,6 @@ export default function Graph({ graphData }) {
           footerFont: {
             family: "Gilroy",
             size: 12,
-          },
-          callbacks: {
-            label: function (data) {
-              return ` USDC: ${data.parsed.y}%`;
-            },
           },
           filter: function (data, tooltipItem) {
             if (data.raw === 0) {
@@ -130,7 +148,13 @@ export default function Graph({ graphData }) {
           padding: "1.5rem 1.5rem 0.8rem 1.5rem",
         }}
       >
-        <Bar width="100%" height="100%" data={data} options={options} />
+        <Bar
+          width="100%"
+          height="100%"
+          data={data}
+          options={options}
+          plugins={[ChartDataLabels]}
+        />
       </div>
     );
   } else {

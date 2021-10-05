@@ -43,11 +43,11 @@ export default function Dashboard() {
 
   // eslint-disable-next-line no-unused-vars
   for (var label in graphLabels) {
-    graphDatasets1[0].push(Math.floor(Math.random() * 10));
-    graphDatasets1[1].push(Math.floor(Math.random() * 2));
+    graphDatasets1[0].push(Math.floor(Math.random() * 20));
+    graphDatasets1[1].push(Math.floor(Math.random() * 5));
 
-    graphDatasets2[0].push(Math.floor(Math.random() * 10));
-    graphDatasets2[1].push(Math.floor(Math.random() * 2));
+    graphDatasets2[0].push(Math.floor(Math.random() * 20));
+    graphDatasets2[1].push(Math.floor(Math.random() * 5));
   }
 
   return (
@@ -65,7 +65,7 @@ export default function Dashboard() {
         style={{
           width: "100%",
           height: "100%",
-          backgroundColor: "#f6f6ff",
+          backgroundColor: "#ECEFF5",
           padding: "1rem",
           display: "flex",
         }}

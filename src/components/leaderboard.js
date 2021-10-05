@@ -6,33 +6,38 @@ export default function Leaderboard() {
 
   useEffect(() => {
     if (leaderboard === null) {
-      setLeaderboard([
-        { name: "Bankless DAO", percent: "23.25%", current: "true" },
-        { name: "Bankless LLC", percent: "5.62%", current: "false" },
-        { name: "Bankless HQ", percent: "-2.14%", current: "false" },
-      ]);
-    }
+      // setLeaderboard([
+      //   { name: "Bankless DAO", percent: "23.25%", current: "true" },
+      //   { name: "Bankless LLC", percent: "5.62%", current: "false" },
+      //   { name: "Bankless HQ", percent: "-2.14%", current: "false" },
+      // ]);
 
-    const moralisKey = "7fd1e7ef047a764836b4cbd1";
-    const tokens = [
-      { name: "Dai", address: "0x6b175474e89094c44da98b954eedeac495271d0f" },
-      { name: "USDC", address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" },
-      { name: "USDT", address: "0xdac17f958d2ee523a2206206994597c13d831ec7" },
-    ];
-    (async function () {
-      const sdk = new CryptoStatsSDK({ moralisKey });
-      const list = sdk.getList("apy");
-      await list.fetchAdapters();
-      for (const token of tokens) {
-        const result = await list.executeQuery("currentAPY", token.address);
-        console.log(`APY for ${token.name}:`);
-        for (const protocol of result) {
-          console.log(
-            `${protocol.id}: ${(protocol.result * 100).toFixed(2)}%`
-          );
+      const moralisKey = "7fd1e7ef047a764836b4cbd1";
+      const tokens = [
+        { name: "Dai", address: "0x6b175474e89094c44da98b954eedeac495271d0f" },
+        { name: "USDC", address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" },
+        { name: "USDT", address: "0xdac17f958d2ee523a2206206994597c13d831ec7" },
+      ];
+      (async function () {
+        try {
+          const sdk = new CryptoStatsSDK({ moralisKey });
+          const list = sdk.getList("apy");
+          await list.fetchAdapters();
+
+          for (const token of tokens) {
+            const result = await list.executeQuery("currentAPY", token.address);
+            console.log(`APY for ${token.name}:`);
+            for (const protocol of result) {
+              console.log(
+                `${protocol.id}: ${(protocol.result * 100).toFixed(2)}%`
+              );
+            }
+          }
+        } catch (err) {
+          console.log(err);
         }
-      }
-    })();
+      })();
+    }
   }, [leaderboard]);
 
   return (
