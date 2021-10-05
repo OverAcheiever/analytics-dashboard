@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { CryptoStatsSDK } from "@cryptostats/sdk";
 
 export default function Leaderboard() {
-  const [leaderboard, setLeaderboard] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [leaderboard, setLeaderboard] = useState([
+    { name: "Bankless DAO", percent: "23.25%", current: "true" },
+    { name: "Bankless LLC", percent: "5.62%", current: "false" },
+    { name: "Bankless HQ", percent: "-2.14%", current: "false" },
+  ]);
 
   useEffect(() => {
     if (leaderboard === null) {
-      // setLeaderboard([
-      //   { name: "Bankless DAO", percent: "23.25%", current: "true" },
-      //   { name: "Bankless LLC", percent: "5.62%", current: "false" },
-      //   { name: "Bankless HQ", percent: "-2.14%", current: "false" },
-      // ]);
-
       const moralisKey = "7fd1e7ef047a764836b4cbd1";
       const tokens = [
         { name: "Dai", address: "0x6b175474e89094c44da98b954eedeac495271d0f" },
