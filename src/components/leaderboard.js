@@ -10,7 +10,6 @@ export default function Leaderboard() {
   ]);
 
   useEffect(() => {
-    if (leaderboard === null) {
       const moralisKey = "7fd1e7ef047a764836b4cbd1";
       const tokens = [
         { name: "Dai", address: "0x6b175474e89094c44da98b954eedeac495271d0f" },
@@ -36,7 +35,7 @@ export default function Leaderboard() {
           console.log(err);
         }
       })();
-    }
+    
   }, [leaderboard]);
 
   return (
