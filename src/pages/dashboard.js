@@ -12,7 +12,6 @@ export default function Dashboard() {
     address: "0xdac17f958d2ee523a2206206994597c13d831ec7",
     protocol: "yearn-vaults",
   });
-  const [isGraphLoading, setIsGraphLoading] = useState(true);
   const [graphData, setGraphData] = useState(null);
 
   useEffect(() => {
