@@ -1,76 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import moment from "moment";
 import Leaderboard from "../components/leaderboard";
 import Sidebar from "../components/sidebar";
-
 import Graph from "../components/graph";
 
+import { getGraphData } from "../components/data";
+
 export default function Dashboard() {
-  const graphLabels = [
-    "1 Oct",
-    "2 Oct",
-    "3 Oct",
-    "4 Oct",
-    "5 Oct",
-    "6 Oct",
-    "7 Oct",
-    "8 Oct",
-    "9 Oct",
-    "10 Oct",
-    "11 Oct",
-    "12 Oct",
-    "13 Oct",
-    "14 Oct",
-    "15 Oct",
-    "16 Oct",
-    "17 Oct",
-    "18 Oct",
-    "19 Oct",
-    "20 Oct",
-    "21 Oct",
-    "22 Oct",
-    "23 Oct",
-    "24 Oct",
-    "25 Oct",
-    "26 Oct",
-    "27 Oct",
-    "28 Oct",
-    "29 Oct",
-    "30 Oct",
-  ];
+  const [currentApy, setCurrentApy] = useState({
+    name: "USDT",
+    address: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    protocol: "yearn-vaults",
+  });
+  const [isGraphLoading, setIsGraphLoading] = useState(true);
+  const [graphData, setGraphData] = useState(null);
 
-  var graphDatasets1 = [[], []];
-  var graphDatasets2 = [[], []];
-
-  // eslint-disable-next-line no-unused-vars
-  for (var label in graphLabels) {
-    graphDatasets1[0].push(Math.floor(Math.random() * 20));
-    graphDatasets1[1].push(Math.floor(Math.random() * 5));
-
-    graphDatasets2[0].push(Math.floor(Math.random() * 20));
-    graphDatasets2[1].push(Math.floor(Math.random() * 5));
-  }
+  useEffect(() => {
+    let startDate = moment().subtract(9, "days").calendar();
+    startDate = moment(startDate).format("YYYY-MM-DD");
+    const endDate = moment().format("YYYY-MM-DD");
+    getGraphData(
+      startDate,
+      endDate,
+      currentApy.address,
+      currentApy.protocol,
+      setGraphData
+    );
+  }, [currentApy]);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        fontFamily: "Gilroy Bold",
-        overflow: "hidden",
-      }}
-    >
+    <div className="flex w-screen h-screen overflow-hidden gilroy">
       <Sidebar />
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#ECEFF5",
-          padding: "1rem",
-          display: "flex",
-        }}
-      >
-        <Leaderboard />
+      <div className="flex w-full h-full p-3 bg-gray-100">
+        <Leaderboard currentApy={currentApy} setCurrentApy={setCurrentApy} />
         <div
           style={{
             display: "flex",
@@ -79,23 +41,19 @@ export default function Dashboard() {
             height: "100%",
             paddingLeft: "1rem",
           }}
+          className=""
         >
           <div style={{ flex: 1, width: "100%" }}>
-            <Graph
-              graphData={{
-                graphLabels: graphLabels,
-                graphDatasets: graphDatasets1,
-              }}
-            />
+            {graphData || true ? <Graph graphData={graphData} /> : null}
           </div>
           <div style={{ width: "100%", height: "1rem" }}></div>
           <div style={{ flex: 1 }}>
-            <Graph
+            {/* <Graph
               graphData={{
                 graphLabels: graphLabels,
                 graphDatasets: graphDatasets2,
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>
