@@ -11,6 +11,7 @@ export default function Leaderboard({ currentApy, setCurrentApy }) {
   }, [leaderboard]);
 
   return (
+    
     <div className="w-72 h-full p-3 bg-white rounded-lg">
       <div>
         {leaderboard !== null

@@ -28,6 +28,7 @@ export default function Dashboard() {
   }, [currentApy]);
 
   return (
+    
     <div className="flex w-screen h-screen overflow-hidden gilroy">
       <Sidebar />
       <div className="flex w-full h-full p-3 bg-gray-100">
@@ -47,11 +48,13 @@ export default function Dashboard() {
           </div>
           <div style={{ width: "100%", height: "1rem" }}></div>
           <div style={{ flex: 1 }}>
+
+            
             {/* <Graph
               graphData={{
                 graphLabels: graphLabels,
                 graphDatasets: graphDatasets2,
-              }}
+              }
             /> */}
           </div>
         </div>

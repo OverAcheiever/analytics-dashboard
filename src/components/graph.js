@@ -1,7 +1,9 @@
 import React from "react";
 import { Chart, Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { useState } from "react/cjs/react.development";
 Chart.register(ChartDataLabels);
+
 
 export default function Graph({ graphData }) {
   console.log(graphData);
@@ -150,6 +152,18 @@ export default function Graph({ graphData }) {
       }}
       className="h-full"
     >
+      {" "}
+
+    
+      <div className="w-full flex justify-end">
+        <div className="w-max border border-gray-300 flex gap-2 pointer rounded-sm p-2">
+          <button>1d</button>
+          <button>90d</button>
+          <button>1y</button>
+        </div>
+      </div>
+
+      
       {!graphData ? (
         <svg
           style={{
