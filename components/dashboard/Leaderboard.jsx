@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Leaderboard({ leaderboard }) {
   return (
-    <div className="w-80 bg-white rounded-lg p-3 space-light flex flex-col gap-y-1.5">
+    <div className="grow-0 w-80 bg-white rounded-lg p-3 space-light flex flex-col gap-y-1.5">
       {leaderboard ? (
         leaderboard.map((item, index) => {
           return (

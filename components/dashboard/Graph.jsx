@@ -35,13 +35,16 @@ export default function Graph({ graphData }) {
   };
 
   const options = {
+    defaultFontFamily: "Space Grotesk",
+    responsive: true,
+    maintainAspectRatio: false,
     options: {
       interaction: {
         mode: "nearest",
       },
     },
     font: {
-      fontFamily: "Gilroy",
+      fontFamily: "Space Grotesk",
     },
     elements: {},
     plugins: {
@@ -55,7 +58,7 @@ export default function Graph({ graphData }) {
           return context.dataset.data[context.dataIndex] > 0;
         },
         font: {
-          family: "Gilroy",
+          family: "Space Grotesk",
           size: "12",
         },
         formatter: function (value, context) {
@@ -68,7 +71,7 @@ export default function Graph({ graphData }) {
         labels: {
           boxWidth: 13,
           font: {
-            family: "Gilroy",
+            family: "Space Grotesk",
             size: 13,
           },
         },
@@ -83,15 +86,15 @@ export default function Graph({ graphData }) {
         caretSize: 5,
         titleMarginBottom: 3,
         titleFont: {
-          family: "Gilroy Bold",
+          family: "Space Grotesk",
           size: 15,
         },
         bodyFont: {
-          family: "Gilroy",
+          family: "Space Grotesk",
           size: 12,
         },
         footerFont: {
-          family: "Gilroy",
+          family: "Space Grotesk",
           size: 12,
         },
         filter: function (data, tooltipItem) {
@@ -115,7 +118,7 @@ export default function Graph({ graphData }) {
           maxRotation: 0,
           minRotation: 0,
           font: {
-            family: "Gilroy Bold",
+            family: "Space Grotesk",
             size: 14,
           },
         },
@@ -144,14 +147,9 @@ export default function Graph({ graphData }) {
   return (
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#fff",
-        borderRadius: "1rem",
-        padding: "1.5rem 1.5rem 0.8rem 1.5rem",
         filter: `${!graphData ? "blur(0px)" : ""}`,
       }}
-      className="h-full"
+      className="h-1/2 bg-white rounded-lg px-4 pt-1 pb-10 space-regular"
     >
       {!graphData ? (
         <svg
@@ -178,6 +176,14 @@ export default function Graph({ graphData }) {
           ></path>
         </svg>
       ) : null}
+      <div className="w-full h-10 flex items-center justify-between px-0">
+        <div></div>
+        <div className="flex gap-x-1.5 bg-gray-50">
+          <button className="h-full w-7 bg-gray-200 rounded">1</button>
+          <button className="h-full w-7 bg-gray-200 rounded">7</button>
+          <button className="h-full w-7 bg-gray-200 rounded">30</button>
+        </div>
+      </div>
       <Bar width="100%" height="100%" data={data} options={options} />
     </div>
   );
