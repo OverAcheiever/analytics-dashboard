@@ -1,11 +1,25 @@
 import React from "react";
-import { Chart, Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-Chart.register(ChartDataLabels);
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function Graph({ graphData }) {
-  console.log(graphData);
-
   var data = {
     labels: graphData ? graphData.labels : "⠀",
     datasets: [
@@ -131,7 +145,7 @@ export default function Graph({ graphData }) {
     <div
       style={{
         width: "100%",
-        // height: "100%",
+        height: "100%",
         backgroundColor: "#fff",
         borderRadius: "1rem",
         padding: "1.5rem 1.5rem 0.8rem 1.5rem",
@@ -164,13 +178,7 @@ export default function Graph({ graphData }) {
           ></path>
         </svg>
       ) : null}
-      <Bar
-        width="100%"
-        height="100%"
-        data={data}
-        options={options}
-        plugins={[ChartDataLabels]}
-      />
+      <Bar width="100%" height="100%" data={data} options={options} />
     </div>
   );
 }
