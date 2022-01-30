@@ -150,6 +150,13 @@ export default function Graph({ graphData }) {
       }}
       className="h-full"
     >
+      <div className="w-full flex justify-end">
+      <div className="flex gap-2 bg-gray-300 px-2 py-1">
+        <button>1</button>
+        <button>7</button>
+        <button>30</button>
+      </div>
+      </div>
       {!graphData ? (
         <svg
           style={{
