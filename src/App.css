@@ -1,14 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: "Gilroy Bold";
-    src: url("https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy-Semibold.woff");
+  font-family: "Gilroy";
+  src: url("https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy-Medium.woff");
+}
+
+@font-face {
+  font-family: "Gilroy Bold";
+  src: url("https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy-Semibold.woff");
+}
+
+.gilroy {
+  font-family: "Gilroy Bold";
 }
 
 .leaderboard-item:hover {
-    background-color: rgba(249, 250, 251);
+  background-color: rgba(249, 250, 251);
 }
