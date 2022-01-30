@@ -1,13 +1,14 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Leaderboard from "./Leaderboard";
+import getLeaderboard from "./api/getLeaderboard";
 
 export default function Dashboard() {
-
   const [leaderboard, setLeaderboard] = useState(null);
 
   useEffect(() => {
-    if(!leaderboard) {
+    if (!leaderboard) {
+      getLeaderboard(setLeaderboard);
     }
   }, [leaderboard]);
 
