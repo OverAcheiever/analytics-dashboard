@@ -25,8 +25,6 @@ export default function Graph({
   setGraphData,
   currentApy,
 }) {
-  console.log(graphData);
-
   var data = {
     labels: graphData ? graphData.labels : "⠀",
     datasets: [

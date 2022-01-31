@@ -39,6 +39,5 @@ export default async function getLeaderboard(setLeaderboard) {
       });
   }
 
-  console.log(leaderboard);
   setLeaderboard(leaderboard);
 }

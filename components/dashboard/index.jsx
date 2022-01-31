@@ -12,8 +12,6 @@ export default function Dashboard() {
   const [graphData, setGraphData] = useState(null);
   const [dateRange, setDateRange] = useState(7);
 
-  console.log(currentApy);
-
   useEffect(() => {
     if (!leaderboard) {
       getLeaderboard(setLeaderboard);
