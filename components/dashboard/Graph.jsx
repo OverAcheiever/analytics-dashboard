@@ -19,7 +19,14 @@ ChartJS.register(
   Legend
 );
 
-export default function Graph({ graphData }) {
+export default function Graph({
+  graphData,
+  setDateRange,
+  setGraphData,
+  currentApy,
+}) {
+  console.log(graphData);
+
   var data = {
     labels: graphData ? graphData.labels : "⠀",
     datasets: [
@@ -135,7 +142,7 @@ export default function Graph({ graphData }) {
           minRotation: 0,
           maxTicksLimit: 10,
           font: {
-            family: "Gilroy Bold",
+            family: "Space Grotesk",
             size: 14,
           },
         },
@@ -149,7 +156,7 @@ export default function Graph({ graphData }) {
       style={{
         filter: `${!graphData ? "blur(0px)" : ""}`,
       }}
-      className="h-1/2 bg-white rounded-lg px-4 pt-1 pb-10 space-regular"
+      className="h-1/2 bg-white rounded-lg px-4 pt-1 pb-12 space-regular"
     >
       {!graphData ? (
         <svg
@@ -177,11 +184,37 @@ export default function Graph({ graphData }) {
         </svg>
       ) : null}
       <div className="w-full h-10 flex items-center justify-between px-0">
-        <div></div>
+        <div className="space-light pl-0 text-xl">
+          {currentApy ? `${currentApy.name}/${currentApy.protocol}` : null}
+        </div>
         <div className="flex gap-x-1.5 bg-gray-50">
-          <button className="h-full w-7 bg-gray-200 rounded">1</button>
-          <button className="h-full w-7 bg-gray-200 rounded">7</button>
-          <button className="h-full w-7 bg-gray-200 rounded">30</button>
+          <button
+            className="h-full w-7 bg-gray-200 rounded"
+            onClick={() => {
+              setGraphData(null);
+              setDateRange(7);
+            }}
+          >
+            7
+          </button>
+          <button
+            className="h-full w-7 bg-gray-200 rounded"
+            onClick={() => {
+              setGraphData(null);
+              setDateRange(10);
+            }}
+          >
+            10
+          </button>
+          <button
+            className="h-full w-7 bg-gray-200 rounded"
+            onClick={() => {
+              setGraphData(null);
+              setDateRange(30);
+            }}
+          >
+            30
+          </button>
         </div>
       </div>
       <Bar width="100%" height="100%" data={data} options={options} />

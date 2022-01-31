@@ -12,7 +12,7 @@ function getDateArray(start, end, array) {
   }
 }
 
-export async function getGraphData(
+export default async function getGraphData(
   start,
   end,
   tokenAddress,

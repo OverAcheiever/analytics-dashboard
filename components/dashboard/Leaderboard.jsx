@@ -1,14 +1,29 @@
 import React from "react";
 
-export default function Leaderboard({ leaderboard }) {
+export default function Leaderboard({
+  leaderboard,
+  currentApy,
+  setCurrentApy,
+  setGraphData,
+}) {
   return (
     <div className="grow-0 w-80 bg-white rounded-lg p-3 space-light flex flex-col gap-y-1.5">
       {leaderboard ? (
         leaderboard.map((item, index) => {
           return (
-            <div
+            <button
               key={index}
-              className="h-10 flex items-center justify-between bg-gray-50 rounded px-2"
+              className={`h-10 flex items-center justify-between ${
+                currentApy &&
+                currentApy.name === item.name &&
+                currentApy.protocol === item.protocol
+                  ? "bg-gray-300"
+                  : "bg-gray-50"
+              } rounded px-2`}
+              onClick={() => {
+                setGraphData(null);
+                setCurrentApy(item);
+              }}
             >
               <div className="flex gap-x-2">
                 <div>{index + 1}.</div>
@@ -17,7 +32,7 @@ export default function Leaderboard({ leaderboard }) {
                 </div>
               </div>
               {item.apy}%
-            </div>
+            </button>
           );
         })
       ) : (
